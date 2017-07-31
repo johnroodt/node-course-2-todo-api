@@ -22,19 +22,19 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
     // });
 
     // Insert new doc into Users (name, age, location)
-    // db.collection('Users').insertOne({
-    //     name: 'Johnny Redd',
-    //     age: 99,
-    //     location: "Cape Town"
-    // }, (err, result) => {
-    //     if(err) {
-    //         return console.log('Unable to insert new user', err);
-    //     }
-    //     console.log(result.ops[0]._id.getTimestamp());
-    //     //Pull the time the document was created from the first 4-bytes of the _id
+    db.collection('Users').insertOne({
+        name: 'Johnny Redd',
+        age: 99,
+        location: "Cape Town"
+    }, (err, result) => {
+        if(err) {
+            return console.log('Unable to insert new user', err);
+        }
+        console.log(result.ops[0]._id.getTimestamp());
+        //Pull the time the document was created from the first 4-bytes of the _id
 
-    // });
+     });
 
 
-    db.close();
+    //db.close();
 });

@@ -23,7 +23,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
     /** findOneAndDelete...returns the data you've just deleted. 
      * This is useful in cases where you want the user to have the option to undo, &
      * having the data, you can just write it back into the DB */
-    db.collection('Users').findOneAndDelete({_id: new ObjectID('597f1c3cde74be1207c5e27d')}).then((result) => {
+    db.collection('Users').findOneAndDelete({name: 'Mike'}).then((result) => {
         console.log(result);
     });
 
