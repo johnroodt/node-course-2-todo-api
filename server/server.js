@@ -30,6 +30,15 @@ app.post('/todos', (req, res) => {
     });
 });
 
+// GET all todos. Use ES6 shortcut in the res.send(..) so you can add other custom items
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        res.send({todos});
+    }, (e) => {
+        res.status(400).send(e);
+    });
+});
+
 // START express app
 app.listen(3000, () => {
     console.log('Started on port 3000');
