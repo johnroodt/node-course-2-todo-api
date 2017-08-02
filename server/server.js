@@ -14,6 +14,9 @@ var {User} = require('./models/user');
 
 // SET UP APP
 var app = express();
+// Set up for Heroku (default to 3000 if using localhost)
+const port = process.env.PORT || 3000;
+
 // GET MIDDLEWARE, pass to express. Body is stored by bodyParser
 app.use(bodyParser.json());
 
@@ -78,9 +81,9 @@ app.get('/todos', (req, res) => {
     });
 });
 
-// START express app
-app.listen(3000, () => {
-    console.log('Started on port 3000');
+// START express app -- using port variable for Heroku
+app.listen(port, () => {
+    console.log(`Started up at port ${port}`);
 });
 
 // Export app using ES6 syntax

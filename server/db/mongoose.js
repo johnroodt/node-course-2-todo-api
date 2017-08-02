@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 // Only need to add this once in this file.
 mongoose.Promise = global.Promise;
 // Mongoose maintains connection and handles the asynchronicities
+/**
+ * To set up Heroku for a live server (here using Heroku)
+ */
 mongoose.connect('mongodb://localhost:27017/TodoApp'); 
 
 module.exports = {mongoose};
