@@ -2,6 +2,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var {ObjectID} = require('mongodb');
+
 //LOCAL IMPORTS
 /** Server.js is responsible for our Routes */
 // Using ES6 destructuring
@@ -27,6 +29,43 @@ app.post('/todos', (req, res) => {
     }, (err) => {
         // See httpstatuses.com
         res.status(400).send(err);
+    });
+});
+
+// How to fetch variables passed in via the url
+// GET /todos/1223423 (the id)
+// use it to get a find by id
+// here we specify the url parameter starting with the ":". it will be attached to the request
+// object. Send back successful record inside {} so that you have more flexibility to add other properties
+app.get('/users/:id', (req, res) => {
+    var id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send({});
+    }
+    // todo 59807c94e8778f1703c8b644   ... user 5980449debb3eb075fca9ada
+    User.findById(id).then((user) => {
+        if(!user) {
+            res.status(404).send({});
+        }
+        return res.status(200).send({user});
+    }).catch((e) => {
+        res.status(400).send({});
+    });
+});
+
+app.get('/todos/:id', (req, res) => {
+    var id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send({});
+    }
+    // todo 59807c94e8778f1703c8b644   ... user 5980449debb3eb075fca9ada
+    Todo.findById(id).then((todo) => {
+        if(!todo) {
+            return res.status(404).send();
+        }
+        res.status(200).send({todo});
+    }).catch((e) => {
+        res.status(400).send();
     });
 });
 
