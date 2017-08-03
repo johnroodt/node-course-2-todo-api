@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
  * To set up Heroku for a live server (here using Heroku)
  */
 //mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp');
-mongoose.connect(process.env.MONGODB_URI);
+//mongoose.connect(process.env.MONGODB_URI);
 // localhost only during initial dev
 mongoose.connect('mongodb://localhost:27017/TodoApp'); 
 
